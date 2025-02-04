@@ -1,0 +1,16 @@
+{
+  "name": "react-strapi-002",
+  "version": "1.0.0",
+  "description": "1. fork 2. create branch from main branch 3. mono-repo: reactjs(vite) + strapicms 4. github actions: CI/CD -> pull requests to the main branch 5. news",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
