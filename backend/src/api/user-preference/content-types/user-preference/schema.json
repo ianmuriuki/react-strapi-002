@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_preferences",
+  "info": {
+    "singularName": "user-preference",
+    "pluralName": "user-preferences",
+    "displayName": "UserPreference"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light ",
+        "dark"
+      ]
+    },
+    "categories": {
+      "type": "string",
+      "required": false
+    },
+    "newsletter": {
+      "type": "boolean",
+      "required": false
+    }
+  }
+}
