@@ -16,6 +16,7 @@ const initialState: AuthState = {
   error: null,
 };
 
+// Login 
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }: { email: string; password: string }) => {
@@ -24,7 +25,7 @@ export const login = createAsyncThunk(
     return response;
   }
 );
-
+// Get current user
 export const getCurrentUser = createAsyncThunk(
   'auth/getCurrentUser',
   async () => {
@@ -33,6 +34,7 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
+// Auth slice
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -45,15 +47,18 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    //sets loading to true and cleans any error
       .addCase(login.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
+      //sets loading to false and sets user and token
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.jwt;
       })
+      // set loading to false and set error message
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Login failed';

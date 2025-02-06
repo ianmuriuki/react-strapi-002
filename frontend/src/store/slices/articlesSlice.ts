@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { articleService } from '../../services/api';
 import type { Article } from '../../types';
 
+// Articles state
 interface ArticlesState {
   items: Article[];
   featured: Article[];
@@ -9,6 +10,7 @@ interface ArticlesState {
   error: string | null;
 }
 
+// Initial state
 const initialState: ArticlesState = {
   items: [],
   featured: [],
@@ -16,6 +18,7 @@ const initialState: ArticlesState = {
   error: null,
 };
 
+// Fetch articles
 export const fetchArticles = createAsyncThunk(
   'articles/fetchArticles',
   async (params?: any) => {
@@ -24,10 +27,18 @@ export const fetchArticles = createAsyncThunk(
   }
 );
 
+// Articles slice 
 const articlesSlice = createSlice({
   name: 'articles',
   initialState,
   reducers: {},
+/**
+ * Handles the different states of the fetchArticles async action.
+ * - On pending: Sets loading to true and clears any existing error.
+ * - On fulfilled: Sets loading to false, updates the items and featured articles.
+ * - On rejected: Sets loading to false and records the error message.
+ */
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchArticles.pending, (state) => {

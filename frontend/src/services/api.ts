@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: import.meta.env.VITE_STRAPI_API_URL,
+  baseURL: import.meta.env.VITE_STRAPI_API_URL, //strapi api url
   headers: {
     'Content-Type': 'application/json',
   },
@@ -19,11 +19,12 @@ api.interceptors.request.use((config) => {
 
 // API service functions
 export const articleService = {
+// 
   getArticles: async (params?: any) => {
     const response = await api.get('/articles', { params });
     return response.data;
   },
-
+// get a single article
   getArticle: async (slug: string) => {
     const response = await api.get(`/articles/${slug}`);
     return response.data;

@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { AppDispatch, RootState } from '../store';
 import { fetchArticles } from '../store/slices/articlesSlice';
+ // import { Articles } from '../types';
 
+// Home component - fetches articles from a redux store and displays them on the home page
 const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { items: articles, featured, loading, error } = useSelector((state: RootState) => state.articles);
 
+  // Fetch articles
   useEffect(() => {
     dispatch(fetchArticles());
   }, [dispatch]);
 
+  // Check if articles are loading
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
@@ -21,6 +25,7 @@ const Home: React.FC = () => {
     );
   }
 
+  // Check if there is an error
   if (error) {
     return (
       <div className="text-center text-red-500 py-8">
@@ -29,6 +34,7 @@ const Home: React.FC = () => {
     );
   }
 
+  // Render the home page
   return (
     <div className="space-y-8">
       {/* Featured Articles */}

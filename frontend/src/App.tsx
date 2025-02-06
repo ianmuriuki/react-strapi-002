@@ -16,15 +16,15 @@ function App() {
       <Router>
         <Layout>
           <Routes>
-            <Route path="/" element={<Home />} /> // Add a route for the Home page
-            <Route path="/article/:slug" element={<Article />} /> // Add a route for the Article page
-            <Route path="/login" element={<Login />} /> // Add a route for the Login page
-            <Route path="/register" element={<Register />} /> // Add a route for the Register page
+            <Route path="/" element={<Home />} /> 
+            <Route path="/article/:slug" element={<Article />} /> // 
+            <Route path="/login" element={<Login />} /> 
+            <Route path="/register" element={<Register />} /> 
             <Route
               path="/profile" // Add a route for the Profile page
               element={
                 <ProtectedRoute>
-                  <Profile /> // Add a route for the Profile page
+                  <Profile /> 
                 </ProtectedRoute>
               }
             />
