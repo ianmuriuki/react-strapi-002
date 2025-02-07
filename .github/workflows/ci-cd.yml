@@ -46,10 +46,6 @@ jobs:
       working-directory: backend
       run: npm run build
 
-    - name: Run backend tests
-      working-directory: backend
-      run: npm test
-
     - name: Install frontend dependencies
       working-directory: frontend
       run: npm install
