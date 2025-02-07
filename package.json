@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:backend": "cd backend && npm run develop",
     "start:frontend": "cd frontend && npm run dev",
-    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend"
   },
   "keywords": [],
   "author": "",
