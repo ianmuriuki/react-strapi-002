@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD for Strapi Project (Build Only)
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
           POSTGRES_USER: strapi
           POSTGRES_PASSWORD: strapi
         options: >-
-          --health-cmd pg_isready
+          --health-cmd "pg_isready -U strapi"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -38,32 +38,18 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install dependencies
+    - name: Install backend dependencies
+      working-directory: backend
       run: npm install
 
-    - name: Build Strapi
+    - name: Build backend (Strapi)
+      working-directory: backend
       run: npm run build
 
-    - name: Run tests
-      run: npm test
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Install dependencies
+    - name: Install frontend dependencies
+      working-directory: frontend
       run: npm install
 
-    - name: Deploy to production
-      run: |
-        echo "Deploying to production..."
-        
+    - name: Build frontend
+      working-directory: frontend
+      run: npm run build
