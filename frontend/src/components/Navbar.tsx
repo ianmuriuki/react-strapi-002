@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="text-2xl font-bold text-gray-800 dark:text-white">
-            NewsHub
+            NewsHub Centre
           </Link>
 
           <div className="flex items-center space-x-4">
