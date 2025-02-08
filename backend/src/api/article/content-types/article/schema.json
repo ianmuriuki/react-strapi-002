@@ -58,6 +58,12 @@
     },
     "published": {
       "type": "datetime"
+    },
+    "autho": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "article"
     }
   }
 }

@@ -21,7 +21,8 @@ api.interceptors.request.use((config) => {
 export const articleService = {
 // 
   getArticles: async (params?: any) => {
-    const response = await api.get('/articles', { params });
+    const response = await api.get('/articles/', { params });
+    
     return response.data;
   },
 // get a single article
@@ -46,11 +47,13 @@ export const authService = {
   },
 
   register: async (username: string, email: string, password: string) => {
+     
     const response = await api.post('/auth/local/register', {
       username,
       email,
       password,
     });
+   
     return response.data;
   },
 

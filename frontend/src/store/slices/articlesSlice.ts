@@ -48,7 +48,8 @@ const articlesSlice = createSlice({
       .addCase(fetchArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload.data;
-        state.featured = action.payload.data.filter((article: Article) => article.featured);
+        console.log(state.items)
+        state.featured = action.payload.data.filter((article: ArticlesState) => article.featured);
       })
       .addCase(fetchArticles.rejected, (state, action) => {
         state.loading = false;

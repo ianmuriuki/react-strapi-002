@@ -56,7 +56,8 @@ const Home: React.FC = () => {
                       {article.excerpt}
                     </p>
                     <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
-                      <span>{article.author.name}</span>
+                      {/* <span>{article.author.name}</span> */}
+                      <span>comming</span>
                       <span>{format(new Date(article.publishedAt), 'MMM d, yyyy')}</span>
                     </div>
                   </div>
@@ -91,7 +92,8 @@ const Home: React.FC = () => {
                     {article.excerpt}
                   </p>
                   <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
-                    <span>{article.author.name}</span>
+                    {/* <span>{article.author.name}</span> */}
+                    <span>voke</span>
                     <span>{format(new Date(article.publishedAt), 'MMM d, yyyy')}</span>
                   </div>
                 </div>
