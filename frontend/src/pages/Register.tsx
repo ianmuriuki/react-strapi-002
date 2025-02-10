@@ -10,6 +10,13 @@ interface RegisterForm {
   confirmPassword: string;
 }
 
+/**
+ * Page for registering a new user.
+ *
+ * Displays a form with fields for username, email, password, and confirmation
+ * of password. If the form is submitted successfully, redirects to the login
+ * page. If there is an error, displays an error message above the form.
+ */
 const Register: React.FC = () => {
   const {
     register,
@@ -20,6 +27,15 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
+
+/**
+ * Handles form submission for user registration.
+ *
+ * @param {RegisterForm} data - The registration form data containing username, email, and password.
+ * @returns {Promise<void>} Redirects to the login page on successful registration.
+ * @throws Sets an error message if registration fails.
+ * @async
+ */
 
   const onSubmit = async (data: RegisterForm) => {
     try {
@@ -33,7 +49,8 @@ const Register: React.FC = () => {
       setLoading(false);
     }
   };
-
+ // Render the registration form
+ // If there is an error, display it
   return (
     <div className="max-w-md mx-auto">
       <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">

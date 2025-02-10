@@ -2,13 +2,28 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store';
 
+/**
+ * Profile component - displays the user's profile information.
+ *
+ * @remarks
+ * This component retrieves the current user's data from the Redux store
+ * and displays their avatar, username, email, and preferences. If the user
+ * does not have an avatar, it shows the first letter of their username.
+ * The component also includes sections for newsletter preferences and 
+ * preferred categories.
+ *
+ * @returns The Profile component, or null if no user is logged in.
+ */
+
 const Profile: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.auth);
 
+  // If no user is logged in, return null
   if (!user) {
     return null;
   }
 
+  // Render the profile information
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
