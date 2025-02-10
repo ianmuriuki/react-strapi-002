@@ -6,7 +6,7 @@ export default [
   {
     name: 'strapi::cors', // Cross-Origin Resource Sharing (CORS) headers
     config: {
-      origin: ['http://localhost:5174', 'https://yourfrontendurl.com'], // Add your frontend URLs here
+      origin: ['http://localhost:5173', 'https://yourfrontendurl.com'], // Add your frontend URLs here
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
       credentials: true, // Enable sending cookies with requests (if needed)
