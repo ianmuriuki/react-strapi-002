@@ -4,14 +4,6 @@ import { format } from 'date-fns';
 import { articleService, commentService } from '../services/api';
 import type { Article as ArticleType, Comment } from '../types';
 
-/**
- * Article component - fetches an article from the API using the slug in the route and displays it on the page.
- *
- * @remarks
- * This component fetches the article and its comments from the API and displays them on the page. It also handles loading and error states.
- *
- * @returns The Article component.
- */
 const Article: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [article, setArticle] = useState<ArticleType | null>(null);
@@ -20,38 +12,29 @@ const Article: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-/**
- * Fetches article and its comments based on the provided slug.
- *
- * @remarks
- * This asynchronous function retrieves the article using the slug from the URL
- * and fetches the associated comments. It sets the article and comments state
- * accordingly. Handles loading and error states during the fetch process.
- *
- * @throws Will set an error message if the article or comments cannot be retrieved.
- */
-
-// Function to fetch article and comments
+    console.log("Slug:", slug);
     const fetchArticle = async () => {
       try {
         if (slug) {
           const data = await articleService.getArticle(slug);
+          if (!data || !data.id) {
+            throw new Error("Article data is missing or malformed");
+          }
+          console.log("Article data:", data);
           setArticle(data);
           const commentsData = await commentService.getComments(data.id);
           setComments(commentsData);
         }
-        // Handle loading and error states
       } catch (err) {
+        console.error("Error fetching article:", err);
         setError('Failed to load article');
       } finally {
         setLoading(false);
       }
     };
-// Fetch article
     fetchArticle();
   }, [slug]);
 
-  // Check if article is loading
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
@@ -59,7 +42,7 @@ const Article: React.FC = () => {
       </div>
     );
   }
-//  Check if there is an error
+
   if (error || !article) {
     return (
       <div className="text-center text-red-500 py-8">
@@ -68,7 +51,6 @@ const Article: React.FC = () => {
     );
   }
 
-  // Render the article
   return (
     <article className="max-w-4xl mx-auto">
       <header className="mb-8">
@@ -88,19 +70,18 @@ const Article: React.FC = () => {
           <time>{format(new Date(article.publishedAt), 'MMMM d, yyyy')}</time>
         </div>
       </header>
-
-// Display article cover image
+      
       <img
-        src={article.coverImage}
-        alt={article.title}
+        src={article.coverImage || '/placeholder.jpg'}
+        alt={article.title || 'Article Cover'}
         className="w-full h-[400px] object-cover rounded-lg mb-8"
       />
-// Display article content
+
       <div
         className="prose dark:prose-invert max-w-none mb-8"
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
-// Display comments
+
       <section className="mt-12">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
           Comments ({comments.length})
@@ -135,5 +116,4 @@ const Article: React.FC = () => {
   );
 };
 
-// Export the Article component
 export default Article;
