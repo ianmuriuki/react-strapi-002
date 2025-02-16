@@ -37,7 +37,17 @@ export const articleService = {
   },
 };
 
+// Auth service
 export const authService = {
+  /**
+   * Authenticates a user.
+   *
+   * @param {string} email - Email address of the user to login.
+   * @param {string} password - Password of the user to login.
+   * @returns {Promise<any>} A promise that resolves with the response data of the login request.
+   * @throws If the request fails.
+   * @async
+   */
   login: async (email: string, password: string) => {
     const response = await api.post('/auth/local', {
       identifier: email,
@@ -57,6 +67,12 @@ export const authService = {
     return response.data;
   },
 
+  /**
+   * Retrieves the current user.
+   *
+   * @returns The current user
+   * @throws If the user is not logged ina
+   */
   getCurrentUser: async () => {
     const response = await api.get('/users/me');
     return response.data;
@@ -64,6 +80,15 @@ export const authService = {
 };
 
 export const commentService = {
+/**
+ * Adds a comment to a specific article.
+ *
+ * @param {string} articleId - The ID of the article to which the comment is being added.
+ * @param {string} content - The content of the comment.
+ * @returns {Promise<any>} A promise that resolves with the response data of the added comment.
+ * @throws Will throw an error if the request fails.
+ */
+
   addComment: async (articleId: string, content: string) => {
     const response = await api.post(`/comments`, {
       article: articleId,
